@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071a3d">
+<title>Para mi Meny</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Poppins:wght@400;500;600&display=swap');
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;font-family:Poppins,Arial,sans-serif}
+body{
+  min-height:100vh;display:flex;justify-content:center;align-items:center;padding:12px;
+  color:#edf5ff;
+  background:
+    radial-gradient(circle at 18% 15%,rgba(86,165,255,.20) 0 1px,transparent 2px),
+    radial-gradient(circle at 75% 28%,rgba(255,255,255,.75) 0 1px,transparent 2px),
+    radial-gradient(circle at 40% 78%,rgba(119,196,255,.55) 0 1px,transparent 2px),
+    radial-gradient(circle at 90% 82%,rgba(255,255,255,.65) 0 1px,transparent 2px),
+    linear-gradient(145deg,#030c22,#0b2554 55%,#061735);
+  background-size:90px 90px,130px 130px,110px 110px,150px 150px,100% 100%;
+}
+.phone{
+  width:min(430px,100%);
+  min-height:min(900px,calc(100vh - 24px));
+  border:1px solid rgba(201,224,255,.55);
+  border-radius:28px;
+  overflow:hidden;
+  position:relative;
+  background:linear-gradient(180deg,#09285b,#061735);
+  box-shadow:0 0 0 6px rgba(126,183,255,.08),0 20px 60px rgba(0,0,0,.55),inset 0 0 55px rgba(84,160,255,.10);
+}
+.phone:before,.phone:after{
+  content:"";position:absolute;pointer-events:none;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.95) 0 1px,rgba(127,200,255,.55) 2px,transparent 5px);
+  filter:blur(.1px);
+}
+.phone:before{width:150px;height:150px;top:-55px;right:-35px;box-shadow:-100px 140px 0 -65px rgba(255,255,255,.8),-170px 310px 0 -68px rgba(120,194,255,.9)}
+.phone:after{width:180px;height:180px;bottom:-75px;left:-65px;box-shadow:180px -180px 0 -78px rgba(255,255,255,.85),260px -330px 0 -72px rgba(113,190,255,.75)}
+.inner{padding:18px 14px 22px;min-height:100%;position:relative}
+.screen{min-height:calc(min(900px,100vh - 24px) - 40px);display:none;flex-direction:column;justify-content:center;position:relative}
+.screen.active{display:flex;animation:turn .55s ease both}
+@keyframes turn{from{opacity:0;transform:translateX(18px) rotateY(-7deg)}to{opacity:1;transform:none}}
+
+h1,h2,h3{
+  font-family:Cinzel,Georgia,serif;
+  color:#f3d58a;
+  text-align:center;
+  margin:0;
+  text-shadow:0 0 14px rgba(132,195,255,.45);
+}
+h1{font-size:2rem;letter-spacing:1px}
+h2{font-size:1.55rem;line-height:1.15}
+h3{font-size:1rem}
+p{line-height:1.55;margin:9px 0}
+.center{text-align:center}
+.label{text-align:center;text-transform:uppercase;letter-spacing:3px;font-size:.61rem;color:#a9d5ff;margin-bottom:9px}
+
+.panel{
+  background:linear-gradient(160deg,rgba(16,51,105,.90),rgba(4,20,48,.94));
+  border:1px solid rgba(190,222,255,.45);
+  border-radius:22px;
+  padding:20px 17px;
+  box-shadow:inset 0 0 30px rgba(86,161,255,.10),0 14px 35px rgba(0,0,0,.25);
+  position:relative;
+}
+.panel:before{
+  content:"";position:absolute;inset:8px;border:1px solid rgba(220,237,255,.10);
+  border-radius:16px;pointer-events:none
+}
+.tiny{font-size:.62rem;letter-spacing:3px;text-transform:uppercase;text-align:center;color:#9bcfff;margin-bottom:8px}
+.code{height:36px;text-align:center;letter-spacing:7px;color:#f3d58a;font-weight:600;margin-top:8px}
+.error{height:21px;text-align:center;color:#ff9e8a;font-size:.72rem}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.key{
+  border:1px solid rgba(202,226,255,.35);border-radius:12px;padding:11px 4px;
+  background:linear-gradient(180deg,#123b78,#092653);color:#fff;
+  font-weight:600;box-shadow:0 4px 10px rgba(0,0,0,.28);font-size:1rem
+}
+.key:active{transform:translateY(2px)}
+.btnrow{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:15px}
+.btn{
+  border:1px solid rgba(236,213,151,.7);border-radius:13px;padding:11px 17px;
+  background:linear-gradient(180deg,#b18b4f,#80602e);color:#fff;font-weight:600;
+  box-shadow:0 5px 16px rgba(0,0,0,.3);cursor:pointer
+}
+.btn.light{background:rgba(9,37,79,.85);border-color:rgba(157,205,255,.65)}
+.motor{
+  width:86%;max-width:290px;margin:3px auto 2px;
+  filter:drop-shadow(0 0 12px rgba(75,167,255,.25)) drop-shadow(0 14px 8px rgba(0,0,0,.35))
+}
+.motor img{width:100%;display:block}
+.gifts{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+.gift{
+  border:1px solid rgba(190,222,255,.42);border-radius:18px;padding:10px;
+  background:linear-gradient(145deg,rgba(18,59,117,.95),rgba(4,20,48,.98));
+  box-shadow:inset 0 0 20px rgba(89,164,255,.09),0 8px 22px rgba(0,0,0,.25)
+}
+.gift .mini{width:48%;max-width:150px;display:block;margin:0 auto;filter:drop-shadow(0 7px 5px rgba(0,0,0,.35))}
+.gift h3{margin:4px 0 7px;color:#eecf83}
+.giftbox{
+  width:70px;height:50px;background:linear-gradient(145deg,#2d78be,#154777);
+  border:1px solid #a8d5ff;border-radius:5px;margin:0 auto 2px;position:relative;
+  box-shadow:0 0 13px rgba(76,171,255,.28);cursor:pointer
+}
+.giftbox:before{content:"";position:absolute;left:28px;top:0;width:12px;height:50px;background:#e5c778}
+.giftbox:after{content:"";position:absolute;left:20px;top:-13px;width:28px;height:17px;border:5px solid #e5c778;border-bottom:0;border-radius:18px 18px 0 0}
+.letter{
+  max-height:400px;overflow:auto;margin-top:10px;padding:16px;
+  background:rgba(2,15,37,.62);border:1px solid rgba(180,216,255,.28);border-radius:15px;
+  font-size:.87rem;box-shadow:inset 0 0 22px rgba(53,128,219,.08)
+}
+.letter strong{color:#f0d287}
+.music{
+  padding:11px;border:1px solid rgba(190,222,255,.45);border-radius:18px;
+  background:rgba(3,17,40,.78);box-shadow:inset 0 0 28px rgba(67,151,240,.08)
+}
+.music iframe{width:100%;height:205px;border:0;border-radius:11px}
+.note{text-align:center;font-size:.69rem;color:#a9c9e8;margin:8px 2px 0}
+.trophy{width:105px;height:108px;position:relative;margin:0 auto 10px;filter:drop-shadow(0 0 10px rgba(255,211,98,.25))}
+.trophy .cup{position:absolute;left:28px;top:3px;width:49px;height:59px;background:linear-gradient(90deg,#b78227,#ffe48b,#c49032);border-radius:5px 5px 20px 20px}
+.trophy .cup:before,.trophy .cup:after{content:"";position:absolute;top:7px;width:30px;height:37px;border:8px solid #d8ad50}
+.trophy .cup:before{left:-25px;border-right:0;border-radius:22px 0 0 22px}
+.trophy .cup:after{right:-25px;border-left:0;border-radius:0 22px 22px 0}
+.trophy .stem{position:absolute;left:48px;top:60px;width:10px;height:27px;background:#d5a945}
+.trophy .base{position:absolute;left:20px;top:87px;width:65px;height:17px;background:#b8782d;border-radius:4px}
+.trophy .star{position:absolute;left:39px;top:16px;color:#fff;font-size:25px}
+.footer{text-align:center;font-size:.62rem;color:#7fb6e8;margin-top:9px}
+</style>
+</head>
+<body>
+<div class="phone"><div class="inner">
+
+<section class="screen active" id="s0">
+<div class="panel">
+<div class="tiny">Una pequeña historia hecha para ti</div>
+<h1>Para mi Meny</h1>
+<p class="center">Hay una fecha que abre esta sorpresa.</p>
+<div class="code" id="code">_ _ _ _ _ _ _ _</div>
+<div class="error" id="error"></div>
+<div class="keys">
+<button class="key" onclick="key('1')">1</button><button class="key" onclick="key('2')">2</button><button class="key" onclick="key('3')">3</button>
+<button class="key" onclick="key('4')">4</button><button class="key" onclick="key('5')">5</button><button class="key" onclick="key('6')">6</button>
+<button class="key" onclick="key('7')">7</button><button class="key" onclick="key('8')">8</button><button class="key" onclick="key('9')">9</button>
+<button class="key" onclick="back()">⌫</button><button class="key" onclick="key('0')">0</button><button class="key" onclick="clearCode()">C</button>
+</div>
+<div class="btnrow"><button class="btn" onclick="check()">ENTRAR</button></div>
+</div>
+<div class="footer">Para mi Amor</div>
+</section>
+
+<section class="screen" id="s1">
+<div class="label">Una página para ti</div>
+<div class="panel center">
+<h2>Tres pequeños regalos</h2>
+<p>Como en una historia que se va descubriendo página por página, aquí están tus tres regalos.</p>
+<div class="motor"><img src="moto-hotwheels.png" alt="Moto estilo juguete"></div>
+<p>Mi Panzón, mi Pancita de Winnie Pooh, mi Amor... toca cada regalito para descubrir lo que preparé.</p>
+<div class="btnrow"><button class="btn" onclick="go(2)">VER LOS REGALOS</button></div>
+</div>
+</section>
+
+<section class="screen" id="s2">
+<div class="label">Tres regalos</div>
+<div class="panel">
+<h2>Para ti</h2>
+<div class="gifts">
+<div class="gift"><img class="mini" src="moto-hotwheels.png" alt="Moto"><h3>Primer regalo</h3><div class="giftbox" onclick="go(3)" aria-label="Abrir primer regalo"></div></div>
+<div class="gift"><img class="mini" src="moto-hotwheels.png" alt="Moto"><h3>Segundo regalo</h3><div class="giftbox" onclick="go(4)" aria-label="Abrir segundo regalo"></div></div>
+<div class="gift"><img class="mini" src="moto-hotwheels.png" alt="Moto"><h3>Tercer regalo</h3><div class="giftbox" onclick="go(5)" aria-label="Abrir tercer regalo"></div></div>
+</div>
+</div>
+</section>
+
+<section class="screen" id="s3">
+<div class="label">Primer regalo</div>
+<div class="panel">
+<h2>Una carta para ti</h2>
+<div class="letter">
+<p><strong>Mi Meny:</strong></p>
+<p>Quería hacerte algo diferente, algo que pudieras ir descubriendo poco a poquito y que se sintiera muy nuestro.</p>
+<p>No estamos a distancia, y justamente por eso quería que fuera una sorpresa para compartir contigo, algo que pudieras abrir y guardar como un pequeño recuerdo.</p>
+<p>Mi Panzón, mi Pancita de Winnie Pooh, mi Amor: gracias por cada momento, por cada risa y por todas esas pequeñas cosas que hacen que nuestra historia sea nuestra.</p>
+<p>Esta primera carta es solamente para recordarte algo muy sencillo:</p>
+<p class="center"><strong>Te quiero muchísimo y me encanta tenerte en mi vida.</strong></p>
+</div>
+<div class="btnrow"><button class="btn light" onclick="go(2)">VOLVER</button><button class="btn" onclick="go(2)">VER LOS DEMÁS</button></div>
+</div>
+</section>
+
+<section class="screen" id="s4">
+<div class="label">Segundo regalo</div>
+<div class="panel">
+<h2>Una canción para ti</h2>
+<p class="center">Esta es la canción que quería dejar dentro de tu regalo.</p>
+<div class="music">
+<iframe src="https://www.youtube.com/embed/JqZYOC2HGGE?rel=0&modestbranding=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="Video musical para Meny"></iframe>
+<p class="note">El video que elegiste está integrado aquí, sin cambiarlo por otro.</p>
+</div>
+<div class="btnrow"><button class="btn light" onclick="go(2)">VOLVER</button><button class="btn" onclick="go(2)">VER EL ÚLTIMO REGALO</button></div>
+</div>
+</section>
+
+<section class="screen" id="s5">
+<div class="label">Tercer regalo</div>
+<div class="panel">
+<div class="trophy">
+<div class="cup"><span class="star">★</span></div><div class="stem"></div><div class="base"></div>
+</div>
+<h2>Una última carta</h2>
+<div class="letter">
+<p><strong>Mi Amor:</strong></p>
+<p>Este es el último regalo, pero quería que fuera el que cerrara toda esta pequeña historia.</p>
+<p>Este trofeo es para ti, mi Meny, porque hay personas que merecen que les recuerden lo importantes que son. Y tú eres una de ellas para mí.</p>
+<p>Mi Panzón, mi Pancita de Winnie Pooh, gracias por estar, por compartir conmigo y por hacer que tantos momentos se vuelvan recuerdos que quiero conservar.</p>
+<p>No necesitaba una gran razón para hacerte esto. Solamente quería darte un detalle que dijera:</p>
+<p class="center"><strong>Te quiero, mi Amor.<br>Y todo esto es solamente para ti.</strong></p>
+<p class="center">Con muchísimo cariño,<br><strong>para mi Meny.</strong></p>
+</div>
+<div class="btnrow"><button class="btn light" onclick="go(2)">VOLVER</button><button class="btn" onclick="go(6)">FINAL</button></div>
+</div>
+</section>
+
+<section class="screen" id="s6">
+<div class="panel center">
+<div class="tiny">Fin de la sorpresa</div>
+<h1>Solo para ti</h1>
+<div class="motor"><img src="moto-hotwheels.png" alt="Moto"></div>
+<p>Mi Meny. Mi Panzón. Mi Pancita de Winnie Pooh. Mi Amor.</p>
+<p>Tres regalos, una canción y unas palabras hechas especialmente para ti.</p>
+<p><strong>Te quiero muchísimo.</strong></p>
+<div class="btnrow"><button class="btn" onclick="go(2)">VOLVER A LOS REGALOS</button></div>
+</div>
+</section>
+
+</div></div>
+<script>
+let entered="";
+const secret="23042025";
+function render(){document.getElementById("code").textContent=entered.padEnd(8,"_").split("").join(" ")}
+function key(n){if(entered.length<8){entered+=n;render()}}
+function back(){entered=entered.slice(0,-1);render()}
+function clearCode(){entered="";document.getElementById("error").textContent="";render()}
+function check(){if(entered===secret){document.getElementById("error").textContent="";go(1)}else{document.getElementById("error").textContent="Esa no es la fecha. Inténtalo otra vez.";entered="";render()}}
+function go(n){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById("s"+n).classList.add("active");window.scrollTo({top:0,behavior:"smooth"})}
+render();
+</script>
+</body>
+</html>
